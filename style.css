@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  /* font-family: manrope, sans-serif; */
+}
+
+body {
+  /* font-size: 10rem; */
+  font-family: roboto, sans-serif;
+}
+
+.header {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.bg-image {
+  /* position: absolute; */
+  /* The image used */
+  background-image: url("../resources/img/background-main.png");
+
+  /* Add the blur effect */
+  filter: brightness(0.7);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* NAVIGATION BAR */
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 4rem;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  color: white;
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0.3;
+}
+
+/* .nav--icon {
+  flex-grow: 1;
+  text-align: center;
+} */
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  flex-grow: 2;
+  justify-content: space-evenly;
+  /* border-right: 2rem; */
+}
+.link {
+  text-decoration: none;
+  color: white;
+  /* border-right: 2rem; */
+}
+.nav__list--item {
+  display: block;
+}
+
+/* THE HEADER HERO */
+.header__hero {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-size: 7rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.header__hero--btns {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-header {
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-header:focus {
+  outline: none;
+}
+
+.btn-header:hover {
+  background-color: rgba(255, 219, 219, 1);
+}
+
+.btn-header:not(:last-child) {
+  margin-right: 10rem;
+}
+
+.btn--free-move {
+}
+
+/* SECTION ANIME SEARCH */
+.result-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.5rem;
+}
+
+.result-title {
+  display: block;
+}
