@@ -24,7 +24,7 @@ body {
 .bg-image {
   /* position: absolute; */
   /* The image used */
-  background-image: url("background-main.png");
+  background-image: url("/background-main.png");
 
   /* Add the blur effect */
   filter: brightness(0.7);
