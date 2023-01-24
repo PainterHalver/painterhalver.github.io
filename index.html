@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Year 2023</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      --first-color: #21dd95;
+      --second-color: #3b8df6;
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(304deg, var(--first-color), var(--second-color));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div {
+      color: white;
+      font-size: 4.3vw;
+      margin-bottom: 5vh;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>Happy new year<br>2023<br>🐱</h1>
+  </div>
+</body>
+<script>
+  const body = document.querySelector('body');
+  const SPEED = 1;
+  const FPS = 60;
+
+  class Color {
+    constructor(hexString) {
+      if (!hexString) {
+        this.r = Math.floor(Math.random() * 256)
+        this.g = Math.floor(Math.random() * 256)
+        this.b = Math.floor(Math.random() * 256)
+      } else {
+        hexString = hexString.trim()
+        if (hexString[0] === '#') {
+          hexString = hexString.replace('#', '')
+        }
+        this.r = parseInt(hexString.substring(0, 2), 16)
+        this.g = parseInt(hexString.substring(2, 4), 16)
+        this.b = parseInt(hexString.substring(4, 6), 16)
+      }
+      console.log({ r: this.r, g: this.g, b: this.b })
+    }
+
+    hex() {
+      // Pad the hex string with leading zeros if needed
+      return '#' + this.r.toString(16).padStart(2, '0') + this.g.toString(16).padStart(2, '0') + this.b.toString(16).padStart(2, '0')
+    }
+
+    rgb() {
+      return `rgb(${this.r}, ${this.g}, ${this.b})`
+    }
+
+    move(targetColor) {
+      if (this.r < targetColor.r) {
+        this.r = Math.min(this.r + SPEED, targetColor.r)
+      } else {
+        this.r = Math.max(this.r - SPEED, targetColor.r)
+      }
+
+      if (this.g < targetColor.g) {
+        this.g = Math.min(this.g + SPEED, targetColor.g)
+      } else {
+        this.g = Math.max(this.g - SPEED, targetColor.g)
+      }
+
+      if (this.b < targetColor.b) {
+        this.b = Math.min(this.b + SPEED, targetColor.b)
+      } else {
+        this.b = Math.max(this.b - SPEED, targetColor.b)
+      }
+    }
+  }
+
+  let targetFirstColor = new Color();
+  let targetSecondColor = new Color();
+  let currentFirstColor = new Color(getComputedStyle(body).getPropertyValue('--first-color'));
+  let currentSecondColor = new Color(getComputedStyle(body).getPropertyValue('--second-color'))
+
+
+  function animate() {
+    if (currentFirstColor.hex() !== targetFirstColor.hex()) {
+      currentFirstColor.move(targetFirstColor)
+    } else {
+      targetFirstColor = new Color();
+      console.log("New first color: " + targetFirstColor.hex())
+    }
+
+    if (currentSecondColor.hex() !== targetSecondColor.hex()) {
+      currentSecondColor.move(targetSecondColor)
+    } else {
+      targetSecondColor = new Color();
+      console.log("New second color: " + targetSecondColor.hex())
+    }
+
+    // Update the CSS variables
+    body.style.setProperty('--first-color', currentFirstColor.hex());
+    body.style.setProperty('--second-color', currentSecondColor.hex());
+  }
+
+  setInterval(animate, 1000 / FPS)
+</script>
+
+</html>
